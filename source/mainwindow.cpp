@@ -432,9 +432,10 @@ void MainWindow::createLayout()
     sampleRateComboBox->addItem("12.5 kS/s");
     sampleRateComboBox->addItem("15.0 kS/s");
     sampleRateComboBox->addItem("20.0 kS/s");
+	sampleRateComboBox->addItem("24.0 kS/s");  // added by Geoff Barrett
     sampleRateComboBox->addItem("25.0 kS/s");
     sampleRateComboBox->addItem("30.0 kS/s");
-    sampleRateComboBox->setCurrentIndex(16);
+    sampleRateComboBox->setCurrentIndex(15);  // changed so 24k is the default
 
     // Notch filter combo box.
     notchFilterComboBox = new QComboBox();
@@ -1616,12 +1617,17 @@ void MainWindow::changeSampleRate(int sampleRateIndex)
         boardSampleRate = 20000.0;
         numUsbBlocksToRead = 12;
         break;
-    case 15:
+	case 15: // added by Geoff Barrett
+        sampleRate = Rhd2000EvalBoard::SampleRate24000Hz;
+        boardSampleRate = 24000.0;
+        numUsbBlocksToRead = 14;
+        break;
+    case 16:
         sampleRate = Rhd2000EvalBoard::SampleRate25000Hz;
         boardSampleRate = 25000.0;
         numUsbBlocksToRead = 14;
         break;
-    case 16:
+    case 17:
         sampleRate = Rhd2000EvalBoard::SampleRate30000Hz;
         boardSampleRate = 30000.0;
         numUsbBlocksToRead = 16;

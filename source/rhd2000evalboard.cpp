@@ -330,6 +330,9 @@ bool Rhd2000EvalBoard::setSampleRate(AmplifierSampleRate newSampleRate)
     //    7   10         35.00 MHz              12.50 kS/s                   80.0 usec
     //   21   25         42.00 MHz              15.00 kS/s                   66.7 usec
     //   28   25         56.00 MHz              20.00 kS/s                   50.0 usec
+	//
+	//   168  125		 67.20 MHz				24.00 kS/s					41.66 usec  // Added by Geoff Barrett
+	//
     //   35   25         70.00 MHz              25.00 kS/s                   40.0 usec
     //   42   25         84.00 MHz              30.00 kS/s                   33.3 usec
     //
@@ -400,6 +403,10 @@ bool Rhd2000EvalBoard::setSampleRate(AmplifierSampleRate newSampleRate)
         M = 28;
         D = 25;
         break;
+	case SampleRate24000Hz:  // added by Geoff Barrett
+		M = 168;
+		D = 125;
+		break;
     case SampleRate25000Hz:
         M = 35;
         D = 25;
@@ -476,6 +483,9 @@ double Rhd2000EvalBoard::getSampleRate() const
         break;
     case SampleRate20000Hz:
         return 20000.0;
+        break;
+	case SampleRate24000Hz:  // added by Geoff Barrett
+        return 24000.0;
         break;
     case SampleRate25000Hz:
         return 25000.0;
