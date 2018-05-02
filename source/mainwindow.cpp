@@ -164,7 +164,7 @@ MainWindow::MainWindow()
     openInterfaceBoard();
 
     changeSampleRate(sampleRateComboBox->currentIndex());
-    sampleRateComboBox->setCurrentIndex(14);
+    sampleRateComboBox->setCurrentIndex(15);
 
     scanPorts();
     setStatusBarReady();

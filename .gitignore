@@ -7,6 +7,9 @@
 *.o
 *.obj
 
+build/
+IntanRHD2000USB/
+
 # Precompiled Headers
 *.gch
 *.pch
