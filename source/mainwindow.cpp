@@ -518,6 +518,18 @@ void MainWindow::createLayout()
     QHBoxLayout *baseFilenameLayout = new QHBoxLayout;
     baseFilenameLayout->addWidget(new QLabel(tr("Base Filename")));
     baseFilenameLayout->addWidget(saveFilenameLineEdit);
+	
+	/* Added by GMB */
+
+	// adding a settings filename lineedit that can be saved. 
+	saveSettingsFilenameLineEdit = new QLineEdit();
+	saveSettingsFilenameLineEdit->setEnabled(false);
+
+	QHBoxLayout *settingFilenameLayout = new QHBoxLayout;
+	settingFilenameLayout->addWidget(new QLabel(tr("Intan Settings Filename")));
+	settingFilenameLayout->addWidget(saveSettingsFilenameLineEdit);
+
+	/* end of addition by GMB */
 
     QHBoxLayout *numWaveformsLayout = new QHBoxLayout();
     numWaveformsLayout->addWidget(new QLabel(tr("Voltage Scale (+/-)")));
@@ -545,6 +557,10 @@ void MainWindow::createLayout()
     leftLayout1->addLayout(recordLayout);
     leftLayout1->addLayout(filenameSelectLayout);
     leftLayout1->addLayout(baseFilenameLayout);
+	/* added by GMB */
+	// adding the settings filename layout to the vbox layout
+	leftLayout1->addLayout(settingFilenameLayout);
+	/* end of add by GMB */
     leftLayout1->addLayout(portChannelLayout);
     leftLayout1->addLayout(displayOrderLayout);
 
@@ -1617,7 +1633,7 @@ void MainWindow::changeSampleRate(int sampleRateIndex)
         boardSampleRate = 20000.0;
         numUsbBlocksToRead = 12;
         break;
-	case 15: // added by Geoff Barrett
+	case 15: // added by GMB
         sampleRate = Rhd2000EvalBoard::SampleRate24000Hz;
         boardSampleRate = 24000.0;
         numUsbBlocksToRead = 14;
@@ -2475,6 +2491,8 @@ void MainWindow::writeSaveFileHeader(QDataStream &outStream, QDataStream &infoSt
         outStream << note2LineEdit->text();
         outStream << note3LineEdit->text();
 
+		outStream << saveSettingsFilenameLineEdit->text(); // version 1.6 addition by GMB
+
         if (saveTemp) {                                 // version 1.1 addition
             outStream << (qint16) numTempSensors;
         } else {
@@ -3041,6 +3059,12 @@ void MainWindow::loadSettings()
         return;
     }
 
+	// added by GMB
+	// setting the save 
+	QFileInfo savefileInfo(settingsFile);
+	saveSettingsFilenameLineEdit->setText(savefileInfo.baseName());
+	// end of add by GMB
+
     // Load settings
     QDataStream inStream(&settingsFile);
     inStream.setVersion(QDataStream::Qt_4_8);
@@ -3340,6 +3364,12 @@ void MainWindow::saveSettings()
         wavePlot->setFocus();
         return;
     }
+
+	// added by GMB
+	// setting the save 
+	QFileInfo savefileInfo(settingsFile);
+	saveSettingsFilenameLineEdit->setText(savefileInfo.baseName());
+	// end of addition by GMB
 
     statusBar()->showMessage("Saving settings to file...");
 

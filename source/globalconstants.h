@@ -42,7 +42,7 @@
 // Saved data file constants
 #define DATA_FILE_MAGIC_NUMBER  0xc6912702
 #define DATA_FILE_MAIN_VERSION_NUMBER  1
-#define DATA_FILE_SECONDARY_VERSION_NUMBER 5
+#define DATA_FILE_SECONDARY_VERSION_NUMBER 6  // modified to version 6 by GMB
 
 // Saved settings file constants
 #define SETTINGS_FILE_MAGIC_NUMBER  0x45ab12cd

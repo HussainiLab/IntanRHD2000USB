@@ -352,6 +352,7 @@ private:
     QLineEdit *note1LineEdit;
     QLineEdit *note2LineEdit;
     QLineEdit *note3LineEdit;
+	QLineEdit *saveSettingsFilenameLineEdit;
 
     QLabel *statusBarLabel;
     QLabel *fifoLagLabel;
