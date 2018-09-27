@@ -59,7 +59,7 @@ public:
         SampleRate12500Hz,
         SampleRate15000Hz,
         SampleRate20000Hz,
-		SampleRate24000Hz,
+	SampleRate24000Hz,
         SampleRate25000Hz,
         SampleRate30000Hz
     };
