@@ -3059,12 +3059,6 @@ void MainWindow::loadSettings()
         return;
     }
 
-	// added by GMB
-	// setting the save 
-	QFileInfo savefileInfo(settingsFile);
-	saveSettingsFilenameLineEdit->setText(savefileInfo.baseName());
-	// end of add by GMB
-
     // Load settings
     QDataStream inStream(&settingsFile);
     inStream.setVersion(QDataStream::Qt_4_8);
@@ -3083,6 +3077,12 @@ void MainWindow::loadSettings()
         wavePlot->setFocus();
         return;
     }
+
+	// added by GMB
+	// setting the save 
+	QFileInfo savefileInfo(settingsFile);
+	saveSettingsFilenameLineEdit->setText(savefileInfo.baseName());
+	// end of add by GMB
 
     statusBar()->showMessage("Restoring settings from file...");
 
