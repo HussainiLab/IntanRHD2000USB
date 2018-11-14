@@ -66,6 +66,12 @@ def read_header(fid):
     if ((version['major'] == 1) and (version['minor'] >= 3)) or (version['major'] > 1) :
         header['eval_board_mode'], = struct.unpack('<h', fid.read(2))
 
+    header['num_samples_per_data_block'] = 60
+    # If data file is from v2.0 or later (Intan Recording Controller), load name of digital reference channel
+    if (version['major'] > 1):
+        header['reference_channel'] = read_qstring(fid)
+        header['num_samples_per_data_block'] = 128
+
     # Place frequency-related information in data structure. (Note: much of this structure is set above)
     freq['amplifier_sample_rate'] = header['sample_rate']
     freq['aux_input_sample_rate'] = header['sample_rate'] / 4

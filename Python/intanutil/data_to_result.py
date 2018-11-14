@@ -22,6 +22,9 @@ def data_to_result(header, data, data_present):
             result['aux_input_data'] = data['aux_input_data']
             result['t_aux_input'] = data['t_aux_input']
 
+    if header['version']['major'] > 1:
+        result['reference_channel'] = header['reference_channel']
+
     if header['num_supply_voltage_channels'] > 0:
         result['supply_voltage_channels'] = header['supply_voltage_channels']
         if data_present:
